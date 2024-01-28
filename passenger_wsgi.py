@@ -1,0 +1,1 @@
+from gomenu.wsgi import application
