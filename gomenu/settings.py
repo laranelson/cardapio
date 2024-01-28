@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
+
 
 #import django_heroku
 import sentry_sdk
@@ -29,9 +29,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=False, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default=[], cast=Csv())
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -101,9 +101,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'cardapio_db',
-        'USER': 'postgres',
-        'PASSWORD': 'n3140n',
-        'HOST': 'localhost',
+        'USER': 'cardapio',
+        'PASSWORD': '9vb1O8lA_1(i2KDYw-',
+        'HOST': 'cardapio.domcloud.dev',
         'PORT': '5432',
     }
 }
