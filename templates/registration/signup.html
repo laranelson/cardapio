@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>goMenu - Cadastre-se</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <!-- End layout styles -->
+  <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'assets/images/favicon.png' %}" type="image/x-icon">
+  <meta property="og:image" content="{% static 'assets/images/favicon.png' %}">
+</head>
+<body>
+<div class="container-scroller">
+  <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth">
+
+      <div class="row flex-grow">
+        <div class="col-lg-4 mx-auto">
+          <div class="auth-form-light text-left p-5">
+            <div class="brand-logo">
+              <img src="{% static 'assets/images/logo.svg' %}">
+            </div>
+            <div>
+              <span class="mb-0 text-muted">
+                {% if form.username.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {% for error in form.username.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                {% if form.email.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {% for error in form.email.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                {% if form.password1.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {% for error in form.password1.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                {% if form.password2.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {% for error in form.password2.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+
+                <h2 class="h2">Já possui um conta?</h2>
+                <p>Acesse o sistema. <a href="{% url 'login' %}" class="btn btn-rounded">Entrar</a></p>
+
+            </span>
+            </div>
+            <h4>Ou,</h4>
+            <h6 class="font-weight-light">Cadastre-se para continuar.</h6>
+            <form method="post" action="" class="pt-3">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="text" name="username" autofocus="" maxlength="254" placeholder="Nome de usuário" class="form-control" autocomplete="off" required="" id="id_username">
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" placeholder="E-mail" class="form-control" autocomplete="off" maxlength="254" required="" id="id_email">
+              </div>
+              <div class="form-group">
+                <input type="text" name="phone" placeholder="Telefone com DDD" class="form-control" maxlength="20" required="" id="id_phone">
+              </div>
+              <div class="form-group">
+                <input type="text" name="address" placeholder="Endereço" class="form-control" maxlength="100" required="" id="id_address">
+              </div>
+              <div class="form-group">
+                <input type="password" name="password1" placeholder="Senha" class="form-control" autocomplete="new-password" required="" id="id_password1">
+              </div>
+              <div class="form-group">
+                <input type="password" name="password2" placeholder="repita a mesma senha" class="form-control" autocomplete="new-password" required="" id="id_password2">
+              </div>
+
+              <input type="hidden" name="next" value="{{ next }}"/>
+
+              <div class="mt-3">
+                <button type="submit" name="signup" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
+                  Cadastrar
+                </button>
+              </div>
+              <div class="my-2 d-flex justify-content-between align-items-center">
+                <div class="form-check">
+                  <label class="form-check-label text-muted">
+                    <input type="checkbox" class="form-check-input"> Mantenha-me conectado </label>
+                </div>
+{#                <a href="{% url 'password_reset' %}" class="auth-link text-black">Esqueceu a senha?</a>#}
+              </div>
+              <div class="text-center mt-4 font-weight-light">
+                &copy; <a href="{% url 'index' %}">goMenu</a>.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="{% static 'assets/js/off-canvas.js' %}"></script>
+<script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+<script src="{% static 'assets/js/misc.js' %}"></script>
+<!-- endinject -->
+</body>
+</html>

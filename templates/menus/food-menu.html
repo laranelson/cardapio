@@ -1,0 +1,181 @@
+<!doctype html>
+{% load static %}
+<html lang="pt-br">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N497TBG');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Required meta tags -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="format-detection" content="date=no">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="description" content="Cardápio {{ menu_title }}">
+  <meta property="og:title" content="{{ menu_object.restaurant.name }} - goMenu"/>
+  <meta property="og:url" content="{{ menu_complete_url }}"/>
+  <meta property="og:description" content="Cardápio {{ menu_title }}">
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="pt_BR"/>
+  {% if menu_image %}
+    <meta property="og:image" content="{{ menu_image }}">
+    <link rel="shortcut icon" href="{{ menu_image }}" type="image/x-icon">
+    <link rel="icon" href="{{ menu_image }}" type="image/x-icon">
+  {% endif %}
+  <title>{{ menu_object.restaurant.name }} - Cardápio {{ menu_title }}</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Yesteryear&display=swap" rel="stylesheet">
+  <style>
+      @page {
+          size: A4;
+          margin: 0;
+      }
+
+      body {
+          margin: 0;
+      }
+
+      .badge-warning {
+          background-color: #ffc1075c;
+      }
+
+      .food-menu-item {
+          border-bottom-style: dotted;
+          border-color: gray;
+      }
+
+      .food-category-title {
+          border-bottom-style: dotted;
+          border-color: gray;
+          font-family: 'Yesteryear', cursive;
+      }
+
+      body {
+          background-image: url("{% static 'assets/images/restaurant.png' %}");
+          -webkit-print-color-adjust: exact;
+      }
+
+      {% if dark_mode %}
+          body {
+              background: #232323;
+              color: #cdcdcd;
+              font-family: "Avenir Next", "Avenir", sans-serif;
+          }
+      {% endif %}
+
+  </style>
+
+  <title>{{ menu_title }}</title>
+</head>
+
+<body style="margin-top: 56px;">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N497TBG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<nav class="navbar navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">{{ restaurant }}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+    <ul class="navbar-nav mr-auto">
+      {% for category in menu %}
+        {% if category.show_in_menu %}
+          <li class="nav-item">
+            <a class="nav-link" href="#{{ category.category }}">{{ category.category }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
+
+<section class="container flex flex-wrap">
+
+  <div class="row">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="col-12">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message|safe }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {% for category in menu %}
+    <div id="{{ category.category }}" style="margin-bottom: 77px;"></div>
+    <div class="menu-category">
+      <div class="d-flex justify-content-center mt-5">
+        <h2 class="text-center food-category-title">{{ category.category }}</h2>
+      </div>
+      <div>
+        {{ category.description|safe }}
+      </div>
+      {% if variations_style == '2' %}
+        {% include 'menus/extra/variations-list.html' %}
+      {% else %}
+        {% for item in category.itens %}
+          <div class="row justify-content-between align-items-center food-menu-item">
+            <div class='col-lg-6 col-md-12'>
+              <h4 class="mt-2">{{ item.product.name }}</h4>
+              {% if item.product.description %}
+                <p class="item-description">{{ item.product.description }}</p>
+              {% endif %}
+            </div>
+            <div class="d-flex">
+              {% if item.product.price|length >= 1 %}
+                {% for variacao in item.product.price %}
+                  <div class='col'>
+                    {% if online_sales == True %}
+                      <h5>
+                      <a href="{% url 'order_add_var_item' pk=item.product.pk var_pk=variacao.variation_pk restaurant_pk=restaurant_pk menu_pk=menu_pk %}">
+                        <span class="badge badge-warning mt-2 p-3">{{ variacao.variation_name }}:<hr>R$ {{ variacao.variation_price }}</span>
+                      </a>
+                    {% else %}
+                      <h5><span class="badge badge-warning mt-2 p-3">{{ variacao.variation_name }}:<hr>R$ {{ variacao.variation_price }}</span>
+                    {% endif %}
+                    </h5>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class='col'>
+                  {% if online_sales == True %}
+                    <h5>
+                      <a href="{% url 'order_add_item' pk=item.product.pk restaurant_pk=restaurant_pk menu_pk=menu_pk %}"><span class="badge badge-warning mt-2 p-3">R$ {{ item.product.price }}</span></a>
+                    </h5>
+                  {% else %}
+                    <h5><span class="badge badge-warning mt-2 p-3">R$ {{ item.product.price }}</span></h5>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  {% endfor %}
+</section>
+<script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+
+<script>
+    $('.navbar-nav>li>a').on('click', function () {
+        $('.navbar-collapse').collapse('hide');
+    });
+</script>
+</body>
+</html>
