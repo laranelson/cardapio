@@ -29,9 +29,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default=[], cast=Csv())
 
 # Application definition
 
@@ -100,10 +100,10 @@ WSGI_APPLICATION = "gomenu.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cardapio_db',
-        'USER': 'cardapio',
-        'PASSWORD': '9vb1O8lA_1(i2KDYw-',
-        'HOST': 'cardapio.domcloud.dev',
+        'NAME': 'menugo_db',
+        'USER': 'menugo',
+        'PASSWORD': 'j8QZB-e2WU_1m3fz2(',
+        'HOST': 'menugo.domcloud.dev',
         'PORT': '5432',
     }
 }
