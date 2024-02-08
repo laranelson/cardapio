@@ -2,7 +2,7 @@
 SECRET_KEY=ChangeFor_aSecretHere
 DEBUG=True
 ALLOWED_HOSTS=*,
-DATABASE_URL=postgres://postgres:postgres@localhost/postgres
+#DATABASE_URL=postgres://postgres:postgres@localhost/postgres
 
 # Email Configuration
 EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
@@ -22,6 +22,6 @@ SENTRY_DSN=
 CLOUDINARY_URL=
 
 # AWS
-DJANGO_AWS_ACCESS_KEY_ID=
-DJANGO_AWS_SECRET_ACCESS_KEY=
-DJANGO_AWS_STORAGE_BUCKET_NAME=
+# DJANGO_AWS_ACCESS_KEY_ID=
+# DJANGO_AWS_SECRET_ACCESS_KEY=
+# DJANGO_AWS_STORAGE_BUCKET_NAME=

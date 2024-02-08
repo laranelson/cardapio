@@ -12,7 +12,7 @@ CONFIG_STRING = f"""# Basic config
 SECRET_KEY={sk}
 DEBUG=True
 ALLOWED_HOSTS=localhost, 127.0.0.1, 10.0.0.154
-DATABASE_URL=sqlite:///db.sqlite3
+# DATABASE_URL=sqlite:///db.sqlite3
 # Se usar docker...
 # DATABASE_URL=postgres://gomenu:gomenu@localhost/postgres
 
