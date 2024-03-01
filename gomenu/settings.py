@@ -1,9 +1,8 @@
 import os
+import dj_database_url
 
 
-from decouple import config, Csv
-#from dj_database_url import parse as dburl
-
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'xwow4foo-tprx3yfdiey@z@ur^=_+mn3_73a1u3ilhfol@mh92'
