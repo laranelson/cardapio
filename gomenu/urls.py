@@ -28,7 +28,7 @@ urlpatterns = [
     path('menus/', include('menus.urls')),
     path('orders/', include('orders.urls')),
     path('', include('restaurants.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # if settings.DEBUG:
 #     import debug_toolbar
