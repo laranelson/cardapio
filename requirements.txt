@@ -29,3 +29,5 @@ django-admin-ordering==0.16.0
 
 # Code Editor
 django-summernote==0.8.20.0
+
+whitenoise==6.6.0
