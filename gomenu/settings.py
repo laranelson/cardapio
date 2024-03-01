@@ -119,9 +119,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Definição do diretório raiz do projeto
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # DEVE SER LIBERADO PARA DEPLOY
 # Definição do diretório raiz do projeto para os arquivos estáticos
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
