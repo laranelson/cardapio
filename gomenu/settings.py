@@ -112,12 +112,19 @@ USE_TZ = True
 # Redirect to home URL after login # TODO(Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = "dashboard"
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
-# Configuration for dev environment
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Definição do diretório raiz do projeto
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# DEVE SER LIBERADO PARA DEPLOY
+# Definição do diretório raiz do projeto para os arquivos estáticos
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 # Media Files (Uploads)
