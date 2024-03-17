@@ -64,6 +64,26 @@
           </ul>
         </div>
       </li>
+
+<!--NOVO MENU CRIADO POR NELSON LARA -->
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#configuracao" aria-expanded="false" aria-controls="cardapios">
+          <span class="menu-title">Configuração</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-file-multiple menu-icon"></i>
+        </a>
+        <div class="collapse" id="configuracao">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{% url 'my_restaurant' %}">Atualizar dados</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Outra opção</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!--FIM DO NOVO MENU CRIADO POR NELSON LARA -->
+  
       {% if request.user.is_superuser %}
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#orders-menu" aria-expanded="false" aria-controls="orders-menu">

@@ -7,6 +7,7 @@ from core.facade import get_dashboard_data_summary
 from core.forms import ProfileForm, SignUpForm
 from core.models import UserProfile, Customer
 from orders.models import Order
+from restaurants.models import Restaurant
 
 
 def index(request):
@@ -29,7 +30,7 @@ def dashboard(request):
             cart_items = len(order.orderitem_set.all())
         except KeyError:
             pass
-
+    
     context = {
         'total_products': dashboard_data['total_products'],
         'total_categories': dashboard_data['total_categories'],

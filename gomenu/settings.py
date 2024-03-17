@@ -71,10 +71,10 @@ WSGI_APPLICATION = "gomenu.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'menugo_db',
-        'USER': 'menugo',
-        'PASSWORD': 'j8QZB-e2WU_1m3fz2(',
-        'HOST': 'menugo.domcloud.dev',
+        'NAME': 'onmenu_db',
+        'USER': 'onmenu',
+        'PASSWORD': '9pL47LwHB)3-6_jruY',
+        'HOST': 'onmenu.app.br',
         'PORT': '5432',
     }
 }
@@ -115,9 +115,9 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = "dashboard"
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
